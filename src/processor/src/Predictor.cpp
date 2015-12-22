@@ -32,7 +32,7 @@ CV_TERMCRIT_EPS | CV_TERMCRIT_ITER//terminaison criteria
 //CV3
 
 Predictor::Predictor(){
-    auto m_trees = cv::ml::RTrees::create();
+    m_trees = cv::ml::RTrees::create();
     m_trees->setMaxDepth(10);
     m_trees->setMinSampleCount(10);
     m_trees->setRegressionAccuracy(0);
@@ -58,7 +58,7 @@ void Predictor::loadTrainData(const std::string& str){
     //m_trees.load(str.c_str())
     //CV3
     //m_trees->load(str.c_str())
-    cv::Ptr<cv::ml::RTrees> m_trees = cv::ml::StatModel::load<cv::ml::RTrees>(str.c_str());
+    m_trees = cv::ml::StatModel::load<cv::ml::RTrees>(str.c_str());
 }
 
 void Predictor::save(const std::string& str){

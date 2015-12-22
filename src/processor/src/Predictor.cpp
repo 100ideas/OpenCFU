@@ -1,8 +1,5 @@
 #include "Predictor.hpp"
 
-
-#include "opencv2/highgui/highgui.hpp"//todel
-
 //CV2
 /*
 Predictor::Predictor():

@@ -12,3 +12,15 @@ on PLoS ONE (http://tinyurl.com/o3bk24o).
 Installation
 -------
 http://opencfu.sourceforge.net/devcorner.php
+
+Building on Mac OS X
+-------
+The brew dependencies are likely overkill.
+
+	brew tap homebrew/science
+	brew install pkg-config autoconf automake glibmm libtool opencv 
+	git clone https://github.com/kitschpatrol/OpenCFU.git
+	cd opencfu
+	autoreconf -i
+	./configure --without-gui 
+	make

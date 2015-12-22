@@ -14,10 +14,9 @@
 Processor::Processor(ProcessingOptions& opts):
     m_opts(opts),
     m_is_busy(false)
-
 {
     cv::FileStorage fs;
-    std::string path = std::string("./")+std::string(TRAINED_CLASSIF_XML_FILE);
+		std::string path = opts.getTrainedClassifierPath();
     fs.open(path, cv::FileStorage::READ);
     DEV_INFOS("Trying to open any local trained classifier: "<<path);
     if (!fs.isOpened()){
@@ -35,7 +34,8 @@ Processor::Processor(ProcessingOptions& opts):
         }
     }
     m_predictor.loadTrainData(path);
-    std::string path_ps = std::string("./")+std::string(TRAINED_CLASSIF_PS_XML_FILE);
+	
+		std::string path_ps = opts.getTrainedClassifierPSPath();
     fs.open(path_ps, cv::FileStorage::READ);
     DEV_INFOS("Trying to open any local trained classifier: "<<path_ps);
     if (!fs.isOpened()){
@@ -74,11 +74,11 @@ void Processor::runAll(){
     assert(!m_opts.getImage().empty());
     void* tmp_step_results = (void*) &m_opts.getImage();
     m_raw_img = m_opts.getImage();
-    bool pipeBrocken = false;
+    bool pipeBroken = false;
 
     Result result;
     for(auto& step : m_processing_steps ){
-        pipeBrocken = step->run(tmp_step_results,pipeBrocken);
+        pipeBroken = step->run(tmp_step_results,pipeBroken);
     }
 
     m_result = (Result*) tmp_step_results;

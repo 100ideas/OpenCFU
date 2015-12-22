@@ -18,7 +18,9 @@ ProcessingOptions::ProcessingOptions():
     m_has_hue_filter(false),
     m_has_outlier_filter(false),
     m_has_clustering_distance(false), //NJL 10/AUG/2014
-    m_gui_filter(new cv::Mat){
+    m_gui_filter(new cv::Mat),
+		m_trained_classifier_path(std::string("./")+std::string(TRAINED_CLASSIF_XML_FILE)),
+		m_trained_classifier_ps_path(std::string("./")+std::string(TRAINED_CLASSIF_PS_XML_FILE)){
 }
 
 //ProcessingOptions::~ProcessingOptions(){
@@ -40,7 +42,9 @@ ProcessingOptions&  ProcessingOptions::operator= (const ProcessingOptions& cpy){
     m_has_hue_filter = cpy.getHasHueFilt();
     m_has_outlier_filter = cpy.getHasOutlierFilt();
     m_has_clustering_distance = cpy.getHasClustDist(); //NJL 10/AUG/2014
-
+		m_trained_classifier_path = cpy.getTrainedClassifierPath();
+		m_trained_classifier_ps_path = cpy.getTrainedClassifierPSPath();
+	
     cpy.m_gui_filter->copyTo(*m_gui_filter);
     cpy.m_image.copyTo(m_image);
     cpy.m_mask.copyTo(m_mask);

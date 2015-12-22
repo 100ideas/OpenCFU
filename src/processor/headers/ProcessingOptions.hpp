@@ -105,8 +105,19 @@ class ProcessingOptions
  *  \return bool state of the has_clustering_distance variable
  */
         const bool getHasClustDist()const{return m_has_clustering_distance;}
+	
+
+/** \brief Getter for the m_trained_classifier_path variable
+ *  \return string of the m_trained_classifier_path variable
+ */
+	const std::string getTrainedClassifierPath()const{return m_trained_classifier_path;}
 
 
+/** \brief Getter for the m_trained_classifier_ps_path variable
+ *  \return string of the m_trained_classifier_ps_path variable
+ */
+	const std::string getTrainedClassifierPSPath()const{return m_trained_classifier_ps_path;}
+	
 /** \brief Setter for m_image
  * \param str the name of the file to read the image from
  */
@@ -298,6 +309,17 @@ class ProcessingOptions
  *  \param bool has_clustering_distance state for whether to perform clustering
  */
         void setHasClustDist(const bool has_clustering_distance){m_has_clustering_distance = has_clustering_distance;}
+	
+
+/** \brief Setter for m_trained_classifier_path
+ *  \param string m_trained_classifier_path Path to XML file with trained classifier data
+ */
+void setTrainedClassifierPath(const std::string trained_classifier_path){m_trained_classifier_path = trained_classifier_path;}
+
+/** \brief Setter for m_trained_classifier_ps_path
+ *  \param string m_trained_classifier_ps_path Path to XML file with trained pre-split classifier data
+ */
+void setTrainedClassifierPSPath(const std::string trained_classifier_ps_path){m_trained_classifier_ps_path = trained_classifier_ps_path;}
 
 
     protected:
@@ -319,7 +341,8 @@ class ProcessingOptions
         bool m_has_hue_filter;
         bool m_has_outlier_filter;
         bool m_has_clustering_distance; //NJL 10/AUG/2014
-
+				std::string m_trained_classifier_path;
+				std::string m_trained_classifier_ps_path;
         std::shared_ptr<cv::Mat> m_gui_filter;
 };
 

@@ -121,25 +121,31 @@ class ProcessingOptions
  * \param str the name of the file to read the image from
  */
         bool setImage(const std::string str){
+#ifdef HAVE_CV_IMAGECODECS
             cv::Mat tmpImg = cv::imread(str, CV_LOAD_IMAGE_ANYDEPTH | CV_LOAD_IMAGE_COLOR);
 
-            //patch for 16bit depth imgs:
-            if(tmpImg.depth() == CV_16U){
-                double min, max;
-                cv::minMaxLoc(tmpImg, &min, &max);
-                double rat = max / 256.0;
-                cv::divide(tmpImg,cv::Scalar(rat,rat,rat),tmpImg,1,CV_8UC3) ;//* (double)(1/2);
-            }
+			//patch for 16bit depth imgs:
+			if (tmpImg.depth() == CV_16U) {
+				double min, max;
+				cv::minMaxLoc(tmpImg, &min, &max);
+				double rat = max / 256.0;
+				cv::divide(tmpImg, cv::Scalar(rat, rat, rat), tmpImg, 1, CV_8UC3);//* (double)(1/2);
+			}
 
-            if(!tmpImg.empty()){
-                m_image = tmpImg;
-                m_image_path = str;
-                DEV_INFOS("");
-                m_mask.update(m_image);
-                return true;
-                }
-            else
-                return false;
+			if (!tmpImg.empty()) {
+				m_image = tmpImg;
+				m_image_path = str;
+				DEV_INFOS("");
+				m_mask.update(m_image);
+				return true;
+			}
+			else {
+				return false;
+			}
+#else
+			std::cerr << "ERROR can't load images from paths unless HAVE_CV_IMAGECODECS macro is defined." << std::endl;
+			exit(EXIT_FAILURE);
+#endif
             }
 /** \brief Setter for m_image
  * \param src an image

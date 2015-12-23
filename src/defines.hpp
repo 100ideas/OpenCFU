@@ -4,8 +4,12 @@
 #define DEFINES_H
 
 #include <assert.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include "config.h"
+
+#if defined _WIN64 || defined _WIN32
+#include <iostream>
+#endif
 
 #ifdef DBG_MESSAGE
 #include <iostream>

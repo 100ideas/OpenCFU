@@ -6,6 +6,7 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
+
 class MaskROI
 {
     public:
@@ -13,7 +14,12 @@ class MaskROI
         }
 
         MaskROI(const std::string& path){
+#ifdef HAVE_CV_IMAGECODECS
             cv::imread(path,CV_LOAD_IMAGE_GRAYSCALE).copyTo(m_original_mat);
+#else
+			std::cerr << "ERROR can't load images from paths unless HAVE_CV_IMAGECODECS macro is defined." << std::endl;
+			exit(EXIT_FAILURE);
+#endif
             type = MASK_TYPE_FILE;
         }
         MaskROI(cv::Mat img){

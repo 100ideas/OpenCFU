@@ -32,7 +32,7 @@ void Features::calcFeatures(const ContourFamily& fam,cv::Mat out){
     perim += perim_hole;
     PA_hull.y -= area_hole;
     PA_hull.x += perim_hole;
-    float matData[m_nfeatures];
+    float matData[13];
     int p=0;
 
     matData[p++] = perim * perim / area;

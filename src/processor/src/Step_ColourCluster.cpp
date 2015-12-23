@@ -60,7 +60,7 @@ std::vector< std::pair<int,int> > Step_ColourCluster::cluster(const Result& in_n
             m_cluster_vector.push_back(ClusterPoint( ii, 0, false, oor.getLABMean() ));
         }
         else {
-            result.push_back( std::make_pair<int,int>( ii, 0 ) );
+            result.push_back( std::make_pair<int,int>( (int)ii, 0 ) );
         }
     }
 

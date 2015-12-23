@@ -19,7 +19,7 @@ class Features
         inline static float calcTwoPointDist(const cv::Point P0,const cv::Point P1);
         void smoothContour(const std::vector<cv::Point>& in,std::vector<cv::Point>& out);
     private:
-        const unsigned int m_nfeatures;
+        const unsigned int m_nfeatures = 13;
 };
 
 

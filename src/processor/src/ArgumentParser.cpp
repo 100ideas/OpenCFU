@@ -1,7 +1,13 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+//#include <unistd.h>
+
+
+#if defined _WIN64 || defined _WIN32
+#include "getopt.h" //
+#endif
+
 #include <sstream>
 #include <utility>
 #include "ArgumentParser.hpp"

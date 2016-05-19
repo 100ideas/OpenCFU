@@ -1,5 +1,5 @@
 //#include "defines.hpp"
-//Should be in all headers in all headers!
+// Should be in all headers in all headers!
 #ifndef DEFINES_H
 #define DEFINES_H
 
@@ -7,18 +7,17 @@
 //#include <unistd.h>
 #include "config.h"
 
-#if defined _WIN64 || defined _WIN32
+//#if defined _WIN64 || defined _WIN32
 #include <iostream>
-#endif
+//#endif
 
 #ifdef DBG_MESSAGE
 #include <iostream>
-#define DEV_INFOS(X) std::cerr<<"file:"<<__FILE__<<"\tline:"<<__LINE__<<"\t=>"<<X<<std::endl
+#define DEV_INFOS(X) std::cerr << "file:" << __FILE__ << "\tline:" << __LINE__ << "\t=>" << X << std::endl
 //#define DEV_INFOS(X) ;
 #else
 #define DEV_INFOS(X) ;
 #endif // DBG_MESSAGE
-
 
 #define OCFU_THR_NORM 0
 #define OCFU_THR_INV 1
@@ -31,8 +30,6 @@
 #define PROCESSOR_IDLE_SIGNAL 1
 //#define PROCESSOR_HAS_REWORKED_SIGNAL 2
 
-
-
 #define MASK_TYPE_NONE 0
 #define MASK_TYPE_FILE 1
 #define MASK_TYPE_DRAW 2
@@ -41,11 +38,9 @@
 #define MASK_TOOL_3P_CIRCLE 0
 #define MASK_TOOL_CONV_POLYGON 1
 
-//GUI:
+// GUI:
 #define DISPLAY_MIN_MARGIN 10
 
 #endif // NDEVEL
 
-
 #define MY_PI 3.1416
-
